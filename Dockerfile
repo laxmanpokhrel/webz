@@ -6,6 +6,8 @@ COPY package.json .
 
 RUN yarn
 
-COPY . .
+COPY ./src .
+
+RUN npm install -g npm@11.1.0
 
 CMD [ "yarn","start:dev" ]

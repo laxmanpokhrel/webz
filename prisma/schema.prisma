@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+model SocialMediaMetric {
+  id           Int    @id @default(autoincrement())
+  social_media String
+  metric_type  String
+  count        Int    @default(0)
+  post         Post   @relation(fields: [post_id], references: [uuid])
+  post_id      String
+}
+
+model Post {
+  uuid                String              @unique
+  url                 String
+  site_full           String
+  site                String
+  site_section        String
+  site_categories     String[]
+  section_title       String
+  title               String
+  title_full          String
+  published           DateTime?
+  replies_count       Int?                @default(0)
+  participants_count  Int?                @default(0)
+  site_type           String?
+  country             String?
+  main_image          String?
+  performance_score   Int?                @default(0)
+  domain_rank         Int?                @default(0)
+  domain_rank_updated DateTime?
+  reach               Int?                @default(0)
+  SocialMediaMetric   SocialMediaMetric[]
+}

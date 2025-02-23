@@ -7,6 +7,7 @@ export class WebZController {
 
   @Get('/init')
   importDatabase() {
+    // return 'This is it';
     return this.webzService.importDatabase();
   }
 }

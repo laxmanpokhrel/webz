@@ -12,14 +12,3 @@ export class CreatePostDto {
   @IsOptional()
   published?: Date;
 }
-
-// DTO for updating a Post
-export class UpdatePostDto {
-  @IsString()
-  @IsOptional()
-  title?: string;
-
-  @IsDate()
-  @IsOptional()
-  published?: Date;
-}

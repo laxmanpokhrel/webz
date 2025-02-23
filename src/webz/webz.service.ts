@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
@@ -83,6 +81,7 @@ export class WebzService {
             }),
           );
         });
+
         await Promise.all(postPromises);
       } while (postCount < 200 && response?.data?.next);
       this.logger.log('Success');

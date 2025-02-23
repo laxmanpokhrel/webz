@@ -1,91 +1,52 @@
-import { Type } from 'class-transformer';
-import {
-  IsArray,
-  IsDate,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { SocialMediaMetricDto } from './socialmediametric.dto';
 
 export class CreateThreadDto {
-  @IsString()
-  @IsNotEmpty()
   uuid: string;
-
-  @IsString()
-  @IsNotEmpty()
   url: string;
-
-  @IsString()
-  @IsNotEmpty()
   site_full: string;
-
-  @IsString()
-  @IsNotEmpty()
   site: string;
-
-  @IsString()
-  @IsNotEmpty()
   site_section: string;
-
-  @IsArray()
-  @IsString({ each: true })
   site_categories: string[];
-
-  @IsString()
-  @IsNotEmpty()
   section_title: string;
-
-  @IsString()
-  @IsNotEmpty()
   title: string;
+  title_full: string;
+  published?: string;
+  replies_count?: number;
+  participants_count?: number;
+  site_type?: string;
+  country?: string;
+  main_image?: string;
+  performance_score?: number;
+  domain_rank?: number;
+  domain_rank_updated?: string;
+}
 
-  @IsString()
-  @IsNotEmpty()
+export class ThreadDto {
+  uuid: string;
+  url: string;
+  ord_in_thread: number;
+  parent_url: string;
+  author: string;
+  published: string;
+  title: string;
+  text: string;
+  highlightText: string;
+  highlightThreadTitle: string;
+  highlightTitle: string;
+  language: string;
+  sentiment: string;
+  site_categories: string[];
+  external_links: string;
+  external_images: string;
+  rating: number;
+  crawled: string;
+  updated: string;
+  categories: string;
+  site_full: string;
+  site: string;
+  site_section: string;
+  section_title: string;
   title_full: string;
 
-  @IsOptional()
-  @Type(() => Date)
-  @IsDate()
-  published?: Date;
-
-  @IsOptional()
-  @IsNumber()
-  replies_count?: number;
-
-  @IsOptional()
-  @IsNumber()
-  participants_count?: number;
-
-  @IsOptional()
-  @IsString()
-  site_type?: string;
-
-  @IsOptional()
-  @IsString()
-  country?: string;
-
-  @IsOptional()
-  @IsString()
-  main_image?: string;
-
-  @IsOptional()
-  @IsNumber()
-  performance_score?: number;
-
-  @IsOptional()
-  @IsNumber()
-  domain_rank?: number;
-
-  @IsOptional()
-  @Type(() => Date)
-  @IsDate()
-  domain_rank_updated?: Date;
-
-  // Assuming SocialMediaMetric is a related entity, you could either create
-  // a separate DTO for it or leave it as a generic array.
-  @IsOptional()
-  @IsArray()
-  SocialMediaMetric?: any[];
+  social: SocialMediaMetricDto;
 }

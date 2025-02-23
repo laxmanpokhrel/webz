@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Thread as ThreadModel } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
+import { CreateThreadDto } from './dto/thread.dto';
 
 @Injectable()
 export class ThreadService {
   constructor(private prisma: PrismaService) {}
-
   // Create a Thread
-  async create(createThread: ThreadModel) {
+  async create(createThread: CreateThreadDto) {
     return this.prisma.thread.create({
       data: createThread,
     });

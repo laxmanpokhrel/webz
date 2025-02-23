@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Post as PostModel } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
+import { CreatePostDto } from './dto/post.dto';
 
 @Injectable()
 export class PostService {
   constructor(private prisma: PrismaService) {}
 
   // Create a Post
-  async create(createPost: PostModel) {
-    console.log('🚀 ~ PostService ~ create ~ createPost:', createPost.uuid);
+  async create(createPost: CreatePostDto) {
     return this.prisma.post.create({
       data: { ...createPost, categories: createPost.categories || [] },
     });

@@ -1,14 +1,51 @@
-import { IsString, IsDate, IsOptional } from 'class-validator';
+import { EntityItem } from './entity.dto';
+import { ThreadDto } from './thread.dto';
 
 // DTO for creating a Post
 export class CreatePostDto {
-  @IsString()
   uuid: string;
-
-  @IsString()
+  url: string;
+  ord_in_thread: number;
+  parent_url: null | string;
+  author: string;
+  published: string;
   title: string;
+  text: string;
+  highlightText: string;
+  highlightTitle: string;
+  highlightThreadTitle: string;
+  language: string;
+  sentiment: string;
+  categories: string[];
+  external_links: string[];
+  external_images: string[];
+  rating: number | null;
+  crawled: string;
+  updated: string;
+}
 
-  @IsDate()
-  @IsOptional()
-  published?: Date;
+export class PostDto {
+  thread: ThreadDto;
+  uuid: string;
+  url: string;
+  ord_in_thread: number;
+  parent_url: null | string;
+  author: string;
+  published: string;
+  title: string;
+  text: string;
+  highlightText: string;
+  highlightTitle: string;
+  highlightThreadTitle: string;
+  language: string;
+  sentiment: string;
+  categories: string[];
+  external_links: string[];
+  external_images: string[];
+  entities: {
+    [entiry: string]: EntityItem[];
+  };
+  rating: number | null;
+  crawled: string;
+  updated: string;
 }

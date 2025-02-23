@@ -1,13 +1,17 @@
-import { IsString, IsInt, IsOptional } from 'class-validator';
-
 export class CreateSocialMediaMetricDto {
-  @IsString()
   social_media: string;
-
-  @IsString()
   metric_type: string;
+  count: number;
+  updated: string;
+  threadUuid: number;
+}
 
-  @IsInt()
-  @IsOptional()
-  count?: number;
+export class MetricItem {
+  likes: number;
+  comments: number;
+  shares: number;
+}
+
+export class SocialMediaMetricDto {
+  [social_media: string]: MetricItem | string;
 }

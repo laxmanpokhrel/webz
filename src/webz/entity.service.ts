@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Entity as EntityModel } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
+import { CreateEntityDto } from './dto/entity.dto';
 
 @Injectable()
 export class EntityService {
   constructor(private prisma: PrismaService) {}
 
   // Create a EntityModel
-  async create(createEntity: EntityModel) {
+  async create(createEntity: CreateEntityDto) {
     return this.prisma.entity.create({
       data: createEntity,
     });

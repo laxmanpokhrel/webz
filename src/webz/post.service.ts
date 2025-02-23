@@ -8,8 +8,9 @@ export class PostService {
 
   // Create a Post
   async create(createPost: PostModel) {
+    console.log('🚀 ~ PostService ~ create ~ createPost:', createPost.uuid);
     return this.prisma.post.create({
-      data: createPost,
+      data: { ...createPost, categories: createPost.categories || [] },
     });
   }
 

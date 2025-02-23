@@ -19,17 +19,18 @@ model SocialMediaMetric {
   metric_type  String
   count        Int      @default(0)
   updated      DateTime
-  Thread       Thread?  @relation(fields: [threadUuid], references: [uuid])
-  threadUuid   String?
+  Thread       Thread?  @relation(fields: [threadUuid], references: [id])
+  threadUuid   Int
 }
 
 model Thread {
-  uuid                String              @unique
+  id                  Int                 @id @default(autoincrement())
+  uuid                String
   url                 String
   site_full           String
   site                String
   site_section        String
-  site_categories     String[]
+  site_categories     String[]            @default([])
   section_title       String
   title               String
   title_full          String
@@ -46,7 +47,8 @@ model Thread {
 }
 
 model Post {
-  uuid                 String   @unique
+  id                   Int      @id @default(autoincrement())
+  uuid                 String
   url                  String
   ord_in_thread        Int      @default(0)
   parent_url           String?
@@ -59,20 +61,20 @@ model Post {
   highlightTitle       String?
   language             String
   sentiment            String?
-  site_categories      String[]
-  external_links       String[]
-  external_images      String[]
+  site_categories      String[] @default([])
+  external_links       String[] @default([])
+  external_images      String[] @default([])
   rating               Int?
   crawled              DateTime
   updated              DateTime
-  categories           String[]
+  categories           String[] @default([])
   Entity               Entity[]
 }
 
 model Entity {
   id               Int    @id @default(autoincrement())
-  post             Post   @relation(fields: [post_id], references: [uuid])
-  post_id          String
+  post             Post   @relation(fields: [post_id], references: [id])
+  post_id          Int
   entity_type      String
   entity_name      String
   entity_sentiment String
